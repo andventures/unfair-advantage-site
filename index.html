@@ -229,6 +229,48 @@ footer a{text-decoration:none}
 .result-can{display:none;margin-inline:auto}
 
 
+.c-logo{display:none;width:46%;aspect-ratio:2/1;background:#fff;border-radius:6px;padding:5%;margin-bottom:5%;align-items:center;justify-content:center;position:relative;z-index:1}
+.c-logo img{width:100%;height:100%;object-fit:contain}
+.c-logo b{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+.can.logo .c-logo{display:flex}
+.can.logo .c-wm{margin-bottom:7%;font-size:11px}
+.lt{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,80px);align-items:start}
+.lt-ctrl{display:flex;flex-direction:column;gap:20px;min-width:0}
+.drop{display:flex;flex-direction:column;gap:6px;align-items:flex-start;border:2px dashed var(--ink);border-radius:16px;padding:22px;cursor:pointer;background:var(--paper)}
+.drop b{font-weight:900;text-transform:uppercase;font-size:20px}
+.drop span{font-size:14px;color:var(--muted)}
+.drop.over{background:var(--b1)}
+.drop input{position:absolute;width:1px;height:1px;opacity:0}
+.drop:focus-within{outline:3px solid var(--b3);outline-offset:3px}
+.selects{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.selects label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;min-width:0}
+.selects select{font:600 16px var(--display);padding:12px;border-radius:12px;border:2px solid var(--line);background:var(--white);color:var(--ink);min-width:0;text-transform:none;letter-spacing:0}
+.tname{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.tname input{font:600 16px var(--display);padding:12px;border-radius:12px;border:2px solid var(--line);background:var(--white);color:var(--ink);text-transform:none;letter-spacing:0;min-width:0}
+.err{margin:0;color:#A1341C;font-weight:700;font-size:14px}
+.stage{background:var(--paper);border-radius:24px;padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;align-items:center;gap:28px}
+.minis{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.mini{width:110px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.mini .mb{width:110px;height:186px;overflow:hidden}
+.mini .can{width:250px;transform:scale(.44);transform-origin:top left;filter:none}
+.mini small{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ways{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:32px}
+.way{background:var(--paper);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:8px}
+.way small{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.way b{font-weight:900;text-transform:uppercase;font-size:22px}
+.way p{margin:0;font-size:15px}
+.way.first{background:var(--ink);color:var(--crema)}
+.way.first small{color:var(--b2)}
+.steps5{list-style:none;margin:32px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;counter-reset:s}
+.steps5 li{counter-increment:s;border-top:3px solid var(--ink);padding-top:14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.steps5 li::before{content:counter(s);font-weight:900;font-size:40px;line-height:1}
+.steps5 b{font-weight:900;text-transform:uppercase;font-size:18px}
+.steps5 p{margin:0;font-size:15px}
+#logo{scroll-margin-top:72px}
+@media(max-width:900px){.lt{grid-template-columns:1fr}.steps5{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.selects{grid-template-columns:1fr}.steps5{grid-template-columns:1fr}}
+
+
 .pt-hero{padding-block:clamp(40px,6vw,88px) 28px}
 .pt-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,360px);gap:clamp(24px,4vw,56px);align-items:start;padding-bottom:clamp(56px,7vw,100px)}
 .pt{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
@@ -289,7 +331,7 @@ footer a{text-decoration:none}
     <nav aria-label="Hauptnavigation">
       <a href="#formeln">Formeln</a>
       <a href="#elemente">Periodensystem</a>
-      <a href="#teams">Für Teams</a>
+      <a href="#fuer-teams">Für Teams</a>
     </nav>
     <a class="btn" href="#test">Test starten <span aria-hidden="true">↗</span></a>
   </div>
@@ -310,7 +352,7 @@ footer a{text-decoration:none}
     <a href="#test"><div class="in"><span class="d">Probierdose.</span><p>Erst kosten. Dann entscheiden.</p></div></a>
     <a href="#test"><div class="in"><span class="d">Deine Dose.</span><p>250 g, gemischt nach deinem Test.</p></div></a>
     <a href="#test"><div class="in"><span class="d">Das Abo.</span><p>Alle 90 Tage neu. Mit kurzem Re-Test.</p></div></a>
-    <a href="#teams"><div class="in"><span class="d">Fürs Team.</span><p>Eure Marke als Mischung.</p></div></a>
+    <a href="#fuer-teams"><div class="in"><span class="d">Fürs Team.</span><p>Eure Marke als Mischung.</p></div></a>
   </section>
 
   <section class="sec" id="formeln" aria-label="Unsere Formeln">
@@ -360,7 +402,7 @@ footer a{text-decoration:none}
     <img src="img/09-zutaten.jpg" alt="Zutaten in Schalen von oben: Carob, Zichorie, Lupine, Kakao, Zimt, Kardamom, Orange, Vanille, Hafer">
     <div class="copy"><div class="stack">
       <p class="label">Unsere Idee</p>
-      <h2 class="d d-l">Keiner trinkt<br>das Gleiche.</h2>
+      <h2 class="d d-l">Dein Alltag.<br>Deine Mischung.</h2>
       <p class="line">Geröstete Basis aus Carob, Zichorie und Lupine. Dazu deine Akzente. Alles steht auf der Dose, geheim bleibt nur das Mischverhältnis.</p>
       <a class="tl" href="#zutaten">Zutaten ansehen ↗</a>
     </div></div>
@@ -373,7 +415,7 @@ footer a{text-decoration:none}
       <h2 class="d d-l">Merch, das<br>man trinkt.</h2>
       <p class="line">Eure Marke als Mischung. Mit eurem Code und eurem Logo auf der Dose.</p>
       <div class="chips"><span>Signature Blend</span><span>Team Formula</span><span>House Formula</span><span>Formula Bar</span></div>
-      <a class="btn" href="mailto:sophie@grwplus.com?subject=Anfrage%20Teams%20und%20Marken">Anfrage stellen <span aria-hidden="true">↗</span></a>
+      <a class="btn" href="#fuer-teams">Eure Dose ansehen <span aria-hidden="true">↗</span></a>
     </div></div></div>
   </section>
 
@@ -384,6 +426,78 @@ footer a{text-decoration:none}
     </div>
   </section>
 </main>
+
+<section id="teamsView" lang="de" aria-label="Für Teams und Marken" hidden>
+  <section class="full" aria-label="Merch, das man trinkt">
+    <img src="img/07-b2b-team-formula.jpg" alt="Sechs Dosen mit Platzhalter für ein Firmenlogo auf einer Büroküche, daneben eine Versandbox">
+    <div class="copy"><div class="in"><div class="stack">
+      <p class="label">Für Teams und Marken</p>
+      <h1 class="d d-l">Merch, das<br>man trinkt.</h1>
+      <p class="line">Eure Marke als Mischung. Probiert hier, wie eure Dose aussieht.</p>
+      <a class="btn" href="#logo">Logo ausprobieren <span aria-hidden="true">↓</span></a>
+    </div></div></div>
+  </section>
+
+  <section class="sec" id="logo" aria-label="Eure Dose">
+    <div class="in">
+      <div class="sec-head">
+        <div class="stack"><p class="label">Eure Dose</p><h2 class="d d-l">Logo rein.<br>Dose fertig.</h2></div>
+        <p class="line">Euer Logo bleibt in eurem Browser. Wir sehen und speichern es nicht.</p>
+      </div>
+      <div class="lt">
+        <div class="lt-ctrl">
+          <label class="drop" id="drop"><b>Logo wählen</b><span>PNG, JPG oder SVG, bis 2 MB. Oder hier hineinziehen. Nur Logos, die ihr nutzen dürft.</span><input type="file" id="logoIn" accept="image/png,image/jpeg,image/svg+xml"></label>
+          <p class="err" id="logoErr" role="alert" hidden></p>
+          <label class="tname">Für wen?<input id="tOwn" maxlength="22" placeholder="z. B. Team Berlin" autocomplete="off"></label>
+          <div class="selects">
+            <label>Move<select id="sMove"></select></label>
+            <label>Alltag<select id="sWl"></select></label>
+            <label>Moment<select id="sClock"></select></label>
+          </div>
+          <p class="hint">Eure echte Formel bauen wir zusammen im Workshop. Hier seht ihr den Look.</p>
+          <div><button class="btn ghost" id="logoReset" type="button" hidden>Logo entfernen</button></div>
+        </div>
+        <div class="stage">
+          <div id="tCan"></div>
+          <div class="minis" id="tMinis"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="background:var(--paper)" aria-label="Fünf Wege">
+    <div class="in">
+      <div class="sec-head"><div class="stack"><p class="label">Fünf Wege</p><h2 class="d d-l">Für jeden Ort.</h2></div></div>
+      <div class="ways" style="margin-top:0">
+        <div class="way first"><small>Marken</small><b>Signature Blend.</b><p>Eure Marke als eigene Formel. Für Kund:innen, Gäste, Launches und Events.</p></div>
+        <div class="way"><small>Unternehmen</small><b>Team Formula.</b><p>Jede Person im Team macht den Test und bekommt ihre Dose. Freiwillig. Die Antworten bekommt ihr als Unternehmen nie. Was auf der Dose steht, entscheidet jede Person selbst.</p></div>
+        <div class="way"><small>Cafés, Hotels, Studios</small><b>House Formula.</b><p>Eure Hausmischung auf der Karte und im Regal. Mit Allergeninfo für den Ausschank.</p></div>
+        <div class="way"><small>Events, Retreats</small><b>Formula Bar.</b><p>Vor Ort testen, mischen, mitnehmen.</p></div>
+        <div class="way"><small>Pflanzendrinks</small><b>Co-Branding.</b><p>Eine Edition mit eurem Pflanzendrink. Sprecht uns an.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-label="Ablauf">
+    <div class="in">
+      <div class="sec-head"><div class="stack"><p class="label">Ablauf</p><h2 class="d d-l">Von der Idee<br>zur Dose.</h2></div><p class="line">Für Unternehmen: Menge und Preis auf Anfrage.</p></div>
+      <ol class="steps5">
+        <li><b>Briefing.</b><p>Wofür, für wen, wie viele. Ein Call reicht.</p></li>
+        <li><b>Workshop.</b><p>Wir bauen eure Formel aus dem Periodensystem.</p></li>
+        <li><b>Muster.</b><p>Ihr probiert und gebt frei.</p></li>
+        <li><b>Abfüllung.</b><p>Dosen mit eurem Code und eurem Logo.</p></li>
+        <li><b>Lieferung.</b><p>An euch, an euer Team oder direkt zum Event.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="closer" aria-label="Anfrage">
+    <div class="in">
+      <h2 class="d d-l">Eure Formel.<br>Euer Logo.</h2>
+      <a class="btn" href="mailto:sophie@grwplus.com?subject=Anfrage%20Teams%20und%20Marken">Anfrage stellen <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+</section>
 
 <section id="ptView" lang="de" aria-label="Das Periodensystem" hidden>
   <div class="in pt-hero">
@@ -442,9 +556,9 @@ footer a{text-decoration:none}
       <p class="label">&nbsp;</p>
       <h2 class="d">Datenschutz.</h2>
       <p>Verantwortlich ist die grw+ GmbH, Kontakt wie oben.</p>
-      <p>Hosting. Die Seite liegt bei GitHub Pages, betrieben von GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Beim Aufruf verarbeitet GitHub technisch nötige Daten wie deine IP-Adresse, um die Seite auszuliefern und abzusichern (Art. 6 Abs. 1 lit. f DSGVO). GitHub speichert die IP-Adresse zu Sicherheitszwecken. Wie lange, regelt die Datenschutzerklärung von GitHub. Die Übermittlung in die USA stützt sich auf die Standardvertragsklauseln der EU-Kommission (Art. 46 Abs. 2 lit. c DSGVO).</p>
+      <p>Hosting. Die Seite liegt bei GitHub Pages, betrieben von GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Beim Aufruf verarbeitet GitHub technisch nötige Daten wie deine IP-Adresse, um die Seite auszuliefern und abzusichern (Art. 6 Abs. 1 lit. f DSGVO). GitHub speichert die IP-Adresse zu Sicherheitszwecken. Wie lange, regelt die Datenschutzerklärung von GitHub. Die Übermittlung in die USA stützt sich auf die Standardvertragsklauseln der EU-Kommission (Art. 46 Abs. 2 lit. c DSGVO).</p>
       <p>E-Mail. Wenn du uns schreibst, verarbeiten wir deine Nachricht, um zu antworten (Art. 6 Abs. 1 lit. b und f DSGVO). Wir löschen Mails, wenn sie erledigt sind und keine Aufbewahrungspflicht mehr besteht.</p>
-      <p>Kein Tracking. Wir setzen keine Cookies und laden nichts von Dritten nach, auch keine Schriften. Der Test läuft nur in deinem Browser, deine Antworten verlassen dein Gerät nicht. Wenn du auf „Formel merken“ tippst, speichert dein Browser die Formel lokal auf deinem Gerät. Wir bekommen davon nichts. Löschen kannst du sie über die Website-Daten deines Browsers.</p>
+      <p>Kein Tracking. Wir setzen keine Cookies und laden nichts von Dritten nach, auch keine Schriften. Der Test läuft nur in deinem Browser, deine Antworten verlassen dein Gerät nicht. Wenn du auf „Formel merken“ tippst, speichert dein Browser deine Formel, deine Antworten und den Namen auf der Dose lokal auf deinem Gerät (§ 25 Abs. 2 Nr. 2 TDDDG). Wir bekommen davon nichts. Löschen kannst du das über die Website-Daten deines Browsers. Ein Logo, das du unter „Für Teams“ ausprobierst, liest nur dein Browser ein. Es wird weder übertragen noch gespeichert und ist nach dem Neuladen weg.</p>
       <p>Deine Rechte. Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung und Datenübertragbarkeit. Beschweren kannst du dich bei einer Aufsichtsbehörde, zum Beispiel beim Bayerischen Landesamt für Datenschutzaufsicht.</p>
       <p><b>Widerspruch.</b> Verarbeitungen nach Art. 6 Abs. 1 lit. f DSGVO kannst du jederzeit widersprechen, wenn Gründe aus deiner besonderen Situation dafür sprechen (Art. 21 DSGVO). Eine Mail an die Adresse oben reicht. Stand: November 2026.</p>
     </div>
@@ -557,7 +671,7 @@ const readSaved=()=>{try{return JSON.parse(localStorage.getItem(STORE)||'null')}
 
 function canHTML(id){
   return `<div class="can" id="${id}" data-clock=""><div class="lid"></div><div class="cbody">
-    <span class="c-wm">${BRAND}</span><span class="c-code">Bs · ? · ? · ?</span><span class="c-name">Deine Formel</span>
+    <span class="c-logo"><img alt="" hidden><b>Dein Logo</b></span><span class="c-wm">${BRAND}</span><span class="c-code">Bs · ? · ? · ?</span><span class="c-name">Deine Formel</span>
     <span class="c-own"></span><span class="c-acc"></span><div class="c-bands"><i></i><i></i><i></i><i></i></div></div></div>`;
 }
 document.getElementById('liveCan').innerHTML=canHTML('can');
@@ -605,7 +719,7 @@ function renderIntro(){
   st.mode=null; paint({codes:['Bs','?','?','?'],clock:'',acc:[],name:'Deine Formel',own:''});
   document.getElementById('canNote').textContent='Deine Dose entsteht, während du antwortest.';
   flow.innerHTML=`<div class="stack"><p class="label">Der Mixer</p><h1 class="d d-l">Misch deine<br>Formel.</h1>
-    <p class="line">Zwölf Fragen zu deinem Alltag. Keine Fragen zu Gesundheit. Rechts wächst deine Dose mit.</p></div>
+    <p class="line">Zwölf Fragen zu deinem Alltag. Keine Fragen zu Gesundheit. Daneben wächst deine Dose mit.</p></div>
     ${s?`<div class="saved"><p>Gemerkt: <b>${esc(s.codes.join(' · '))}</b>, ${esc(s.name)}${s.own?', für '+esc(s.own):''}.</p><button class="btn" type="button" id="openSaved">Öffnen <span aria-hidden="true">↗</span></button></div>`:''}
     <div class="modes">
       <button class="mode" type="button" data-mode="me"><span class="label">12 Fragen</span><b>Für mich.</b><span>Dein Alltag wird zu deiner Formel.</span></button>
@@ -662,7 +776,7 @@ function renderResult(){
       <h3 class="d d-m">${gift?'Formel verschenken.':'Formel merken.'}</h3>
       <div class="row"><button class="btn" type="button" id="keepBtn">Formel merken <span aria-hidden="true">↗</span></button></div>
       <p class="ok" id="keepMsg" hidden>Gemerkt. Beim nächsten Besuch findest du sie oben im Mixer.</p>
-      <p>Bestellen geht ab dem Start. Bis dahin bleibt deine Formel hier gemerkt.</p>
+      <p>Bestellen geht ab dem Start. Tipp auf „Formel merken“, dann findest du sie hier wieder.</p>
     </div>
     <div class="row">
       <button class="btn ghost" type="button" id="again">Test neu starten</button>
@@ -678,7 +792,7 @@ function renderResult(){
     const ing=['geröstetes Johannisbrot (Carob)','geröstete Zichorienwurzel','geröstete <b>Lupine</b>',...st.acc.map(a=>a==='Hafer'?'<b>Hafer</b>':a)];
     document.getElementById('ingr').innerHTML=ing.join(', ')+'.';
     document.getElementById('alg').textContent=['Lupine'].concat(st.acc.includes('Hafer')?['Hafer (Gluten)']:[]).join(', ')+'.';
-    document.getElementById('cocoaNote').textContent=st.acc.includes('Kakao')?'Enthält Kakao.':'Ohne Kakao.';
+    document.getElementById('cocoaNote').textContent=st.acc.includes('Kakao')?'Enthält Kakao, von Natur aus mit etwas Koffein.':'Ohne Kakao.';
     paint(view());
   };
   accs.onclick=e=>{const b=e.target.closest('button'); if(!b||b.disabled) return; const a=b.dataset.a;
@@ -708,7 +822,7 @@ function openEl(k){
   const acc=e.a.length?`${e.a.join(', ')}.`:(k==='Bs'?'Carob, Zichorie und Lupine, alles geröstet.':'Keine eigenen Akzente. Dieses Element bestimmt den Moment und die Farbe der Dose.');
   side.innerHTML=`<div class="big g-${e.g}"><span class="no">${NO[k]} · ${GROUP[e.g]}</span><span class="sym">${k}</span><span class="nm">${e.n}</span></div>
     <div class="dbox"><h3>Was es über dich sagt</h3><p class="lead">${e.s}</p></div>
-    <div class="dbox"><h3>${k==='Bs'?'Die Basis':'In der Dose'}</h3><p>${acc}${k==='Ev'?' Abends mischen wir ohne Kakao.':''}</p></div>
+    <div class="dbox"><h3>${k==='Bs'?'Die Basis':'Geschmack in der Dose'}</h3><p>${acc}${k==='Ev'?' Abends mischen wir ohne Kakao.':''}</p></div>
     ${ans.length?`<div class="dbox"><h3>Der Test zieht es aus Antworten wie</h3><ul>${ans.map(a=>`<li>${a}</li>`).join('')}</ul></div>`:''}
     ${sig.length?`<div class="dbox"><h3>Steckt in diesen Formeln</h3><div class="forms">${sig.map(s=>`<span>${s}</span>`).join('')}</div></div>`:''}
     <a class="btn" href="#test">Deine Formel finden <span aria-hidden="true">↗</span></a>`;
@@ -718,17 +832,54 @@ pt.addEventListener('mouseover',ev=>{const b=ev.target.closest('.tile'); if(!b) 
 pt.addEventListener('mouseleave',()=>pt.classList.remove('dim'));
 openEl('Bs');
 
-const ACC_NOTE={Kakao:'Nicht in Abendformeln.',Hafer:'Enthält Gluten.'};
+const TASTE={Kakao:'Schokoladig und rund.',Zimt:'Warm und würzig.',Kardamom:'Würzig und frisch.',Vanille:'Weich und blumig.',Orange:'Frisch und fruchtig.',Hafer:'Mild, macht die Tasse runder.',Meersalz:'Eine Prise, hebt die Röstaromen.'};
+const ACC_NOTE={Kakao:'Enthält von Natur aus etwas Koffein. Nicht in Abendformeln.',Hafer:'Enthält Gluten.'};
 document.getElementById('zt').innerHTML=`<div class="zcard base"><b>Die Basis.</b><p>Geröstetes Johannisbrot (Carob), geröstete Zichorienwurzel, geröstete Lupine.</p><small>In jeder Dose. Allergen: Lupine.</small></div>`+
   POOL.map(a=>{const els=ORDER.filter(k=>EL[k].a.includes(a));
-    return `<div class="zcard"><b>${a}.</b><p>Kommt mit ${list(els.map(k=>`${k} ${EL[k].n}`))}.</p>${ACC_NOTE[a]?`<small>${ACC_NOTE[a]}</small>`:''}</div>`}).join('');
+    return `<div class="zcard"><b>${a}.</b><p>${TASTE[a]}</p>${ACC_NOTE[a]?`<small>${ACC_NOTE[a]}</small>`:''}</div>`}).join('');
 
 
 const ptView=document.getElementById('ptView');
+
+const T={logo:'',own:'',move:'En',wl:'Dk',clock:'Mr'};
+const teamsView=document.getElementById('teamsView');
+document.getElementById('tCan').innerHTML=canHTML('tBig');
+document.getElementById('tMinis').innerHTML=CLOCK.map(c=>`<div class="mini"><div class="mb">${canHTML('tm'+c)}</div><small>${EL[c].n}</small></div>`).join('');
+function fill(id,arr,key){const s=document.getElementById(id);s.innerHTML=arr.map(k=>`<option value="${k}">${EL[k].n}</option>`).join('');s.value=T[key];s.onchange=()=>{T[key]=s.value;teamPaint();};}
+fill('sMove',MOVE,'move'); fill('sWl',WORKLIFE,'wl'); fill('sClock',CLOCK,'clock');
+function teamCan(el,clock){
+  const codes=['Bs',T.move,T.wl,clock], m=mix(codes);
+  paintCan(el,{clock,codes,name:m.name,own:T.own,acc:m.acc.slice(0,MAXACC)});
+  el.classList.add('logo');
+  const img=el.querySelector('.c-logo img'), ph=el.querySelector('.c-logo b');
+  if(T.logo){img.src=T.logo;img.hidden=false;ph.hidden=true;} else {img.removeAttribute('src');img.hidden=true;ph.hidden=false;}
+}
+function teamPaint(){
+  teamCan(document.getElementById('tBig'),T.clock);
+  CLOCK.forEach(c=>teamCan(document.getElementById('tm'+c),c));
+  document.getElementById('logoReset').hidden=!T.logo;
+}
+const logoIn=document.getElementById('logoIn'), drop=document.getElementById('drop'), logoErr=document.getElementById('logoErr');
+function takeLogo(f){
+  logoErr.hidden=true;
+  if(!f) return;
+  if(!/^image\/(png|jpeg|svg\+xml)$/.test(f.type)){logoErr.textContent='Bitte ein PNG, JPG oder SVG.';logoErr.hidden=false;return;}
+  if(f.size>2*1024*1024){logoErr.textContent='Die Datei ist größer als 2 MB.';logoErr.hidden=false;return;}
+  const r=new FileReader(); r.onload=()=>{T.logo=r.result;teamPaint();}; r.readAsDataURL(f);
+}
+logoIn.onchange=()=>takeLogo(logoIn.files[0]);
+['dragenter','dragover'].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.add('over');}));
+['dragleave','drop'].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.remove('over');}));
+drop.addEventListener('drop',ev=>takeLogo(ev.dataTransfer.files[0]));
+document.getElementById('tOwn').oninput=e=>{T.own=e.target.value.trim();teamPaint();};
+document.getElementById('logoReset').onclick=()=>{T.logo='';logoIn.value='';teamPaint();};
+teamPaint();
+
 function route(){
   const id=location.hash.slice(1);
-  const v=id==='test'?'test':(id==='elemente'||id==='zutaten')?'pt':'home';
-  mainEl.hidden=v!=='home'; testView.hidden=v!=='test'; ptView.hidden=v!=='pt';
+  const v=id==='test'?'test':(id==='elemente'||id==='zutaten')?'pt':(id==='fuer-teams'||id==='logo')?'teams':'home';
+  mainEl.hidden=v!=='home'; testView.hidden=v!=='test'; ptView.hidden=v!=='pt'; teamsView.hidden=v!=='teams';
+  if(v==='teams'){ if(id==='logo') document.getElementById('logo').scrollIntoView(); else window.scrollTo(0,0); return; }
   if(v==='test'){ if(!st.mode) renderIntro(); window.scrollTo(0,0); }
   else if(id==='zutaten') document.getElementById('zutaten').scrollIntoView();
   else if(v==='pt') window.scrollTo(0,0);
