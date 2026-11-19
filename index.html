@@ -1,0 +1,909 @@
+<!doctype html>
+<html lang="de">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>unfair advantage · coming soon</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Deine Formel ohne Kaffee. Coming soon.">
+<style>
+@font-face{font-family:'Figtree';font-style:normal;font-weight:400 900;font-display:swap;src:url(fonts/figtree-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F}
+@font-face{font-family:'Figtree';font-style:normal;font-weight:400 900;font-display:swap;src:url(fonts/figtree-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+.peek{background:var(--b3);color:var(--ink);font-size:14px;line-height:1.35}
+.peek .wrap{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;padding-block:9px}
+.peek b{font:900 15px/1 var(--display);text-transform:uppercase;letter-spacing:-.01em}
+main [id]{scroll-margin-top:140px}
+
+
+:root{
+  --crema:#F4EDE2;      
+  --paper:#FBF7F0;      
+  --ink:#17120E;        
+  --muted:#6B5E50;      
+  --line:rgba(23,18,14,.14);
+  --b1:#F6E3C0;         
+  --b2:#F2C98A;         
+  --b3:#F2A33A;         
+  --b4:#B8661C;         
+  --white:#FFFFFF;
+  --display:'Figtree', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+  --text:'Figtree', 'Helvetica Neue', Arial, sans-serif;
+  --gut:max(16px, env(safe-area-inset-left, 0px));
+  --gut-r:max(16px, env(safe-area-inset-right, 0px));
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--crema);color:var(--ink);font-family:var(--text);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--crema)}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--b3);outline-offset:3px}
+.wrap{padding-left:max(var(--gut),4vw);padding-right:max(var(--gut-r),4vw);max-width:1440px;margin-inline:auto}
+
+
+.d-xl,.d-l,.d-m{font-family:var(--display);font-weight:900;text-transform:uppercase;letter-spacing:-.035em;line-height:.88;margin:0;text-wrap:balance}
+.d-xl{font-size:clamp(64px,13vw,190px)}
+.d-l{font-size:clamp(48px,8.5vw,120px)}
+.d-m{font-size:clamp(34px,5vw,64px);line-height:.92}
+.label{font-family:var(--text);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin:0}
+.lead{font-size:clamp(18px,1.6vw,21px);line-height:1.45;max-width:34ch;margin:0}
+.body{max-width:62ch;margin:0;color:var(--ink)}
+.muted{color:var(--muted)}
+
+
+.btn{display:inline-flex;align-items:center;gap:.6em;border-radius:999px;padding:.95em 1.5em;font:700 15px/1 var(--text);text-decoration:none;border:2px solid var(--ink);background:var(--ink);color:var(--crema);cursor:pointer;transition:transform .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn .arr{font-size:1.1em;line-height:1}
+.btn.light{background:var(--crema);color:var(--ink);border-color:var(--crema)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost.on-dark{color:var(--white);border-color:var(--white)}
+.textlink{font-weight:700;text-decoration:none;display:inline-flex;gap:.4em;align-items:center;border-bottom:2px solid currentColor;padding-bottom:2px}
+
+
+.hdr{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--crema);border-bottom:1px solid var(--line)}
+.hdr .wrap{display:flex;align-items:center;gap:24px;min-height:68px}
+.mark{font:800 21px/1 var(--display);letter-spacing:-.03em;text-decoration:none;white-space:nowrap}
+.nav{display:flex;gap:22px;flex-wrap:wrap;margin-left:12px}
+.nav a{font-weight:600;font-size:15px;text-decoration:none;opacity:.85}
+.nav a[aria-current="page"]{opacity:1;box-shadow:inset 0 -2px 0 var(--ink)}
+.hdr .btn{margin-left:auto;padding:.75em 1.2em;font-size:13px}
+.menu-btn{display:none;margin-left:auto;background:none;border:0;font:700 14px var(--text);text-transform:uppercase;letter-spacing:.06em;cursor:pointer;color:var(--ink)}
+@media (max-width:960px){
+  .nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--crema);flex-direction:column;gap:0;margin:0;padding:8px max(var(--gut),4vw) 20px;border-bottom:1px solid var(--line)}
+  .nav.open{display:flex}
+  .nav a{padding:12px 0;font-size:20px;font-weight:700}
+  .menu-btn{display:block}
+  .hdr .btn{display:none}
+}
+
+
+.hero{position:relative;min-height:min(86vh,820px);display:flex;align-items:flex-end;color:var(--white);overflow:hidden;background:var(--ink)}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,18,14,.15) 0%,rgba(23,18,14,.25) 45%,rgba(23,18,14,.72) 100%)}
+.hero .wrap{position:relative;z-index:1;width:100%;padding-block:clamp(40px,8vw,96px);display:grid;gap:22px}
+.hero .lead{color:rgba(255,255,255,.9)}
+.hero .row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+
+
+.bands{overflow:hidden}
+.band{display:flex;justify-content:center;align-items:flex-end;height:clamp(52px,9.6vw,136px);overflow:hidden}
+.band span{font:900 clamp(56px,11.5vw,168px)/.8 var(--display);text-transform:uppercase;letter-spacing:-.045em;transform:translateY(.14em);white-space:nowrap}
+.band:nth-child(1){background:var(--b1)}.band:nth-child(2){background:var(--b2)}.band:nth-child(3){background:var(--b3)}.band:nth-child(4){background:var(--b4);color:var(--crema)}
+
+
+.split{display:grid;grid-template-columns:1fr 1fr;min-height:620px}
+.split>.media{position:relative;min-height:360px}
+.split>.media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.split>.copy{display:flex;flex-direction:column;justify-content:center;gap:22px;padding:clamp(40px,6vw,96px) max(var(--gut-r),5vw) clamp(40px,6vw,96px) max(var(--gut),5vw);min-width:0}
+.split.paper>.copy{background:var(--paper)}
+.split.flip>.media{order:2}
+@media (max-width:820px){.split{grid-template-columns:1fr}.split.flip>.media{order:0}.split>.media{min-height:380px}}
+
+
+.code{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:52px;padding:0 12px;border-radius:999px;font:900 22px/1 var(--display);letter-spacing:-.02em;background:var(--ink);color:var(--crema)}
+.chip.b{background:var(--b3);color:var(--ink)}
+.dot{font:900 22px var(--display);opacity:.4}
+.el{width:132px;aspect-ratio:1/1.12;border:2px solid var(--ink);border-radius:14px;padding:12px;display:flex;flex-direction:column;justify-content:space-between;background:var(--paper)}
+.el .sym{font:900 46px/.9 var(--display);letter-spacing:-.04em}
+.el .nm{font-weight:700;font-size:13px}
+.el .grp{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.el.g-move{background:var(--b2)}.el.g-base{background:var(--b3)}.el.g-clock{background:var(--b1)}
+
+
+.sg-sec{padding-block:clamp(48px,7vw,96px);border-bottom:1px solid var(--line)}
+.sg-sec .wrap{display:grid;gap:28px}
+.sg-head{display:grid;gap:10px}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.sw{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--paper)}
+.sw i{display:block;height:110px}
+.sw div{padding:10px 12px;font-size:13px;line-height:1.35}
+.sw b{display:block;font-size:14px}
+.sw code{font-family:ui-monospace,Menlo,monospace;color:var(--muted)}
+.typescale{display:grid;gap:26px}
+.typescale .row{display:grid;grid-template-columns:140px 1fr;gap:20px;align-items:baseline;border-top:1px solid var(--line);padding-top:18px}
+.typescale .row>*{min-width:0}
+@media (max-width:640px){.typescale .row{grid-template-columns:1fr;gap:8px}}
+.btnrow{display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding:24px;border-radius:16px;background:var(--paper)}
+.btnrow.dark{background:var(--ink)}
+.kit{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-end}
+.can-wrap{width:200px}
+.note{border-left:4px solid var(--b3);padding:6px 0 6px 16px;max-width:70ch;font-size:15px}
+.rule-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:0;padding:0;list-style:none}
+.rule-list li{background:var(--paper);border-radius:12px;padding:14px 16px;font-size:15px}
+.rule-list b{display:block;margin-bottom:2px}
+.placeholder{padding-block:clamp(80px,12vw,160px)}
+.placeholder .wrap{display:grid;gap:20px}
+
+.d-xl,.d-l,.d-m{overflow-wrap:break-word;hyphens:auto}
+.ph{background:var(--b1);border-radius:4px;padding:0 4px;font-weight:700}
+.sec{padding-block:clamp(64px,9vw,128px)}
+.sec .wrap{display:grid;gap:clamp(28px,4vw,48px)}
+.sec.paper{background:var(--paper)}
+.sec.dark{background:var(--ink);color:var(--crema)}
+.sec.dark .muted{color:rgba(244,237,226,.7)}
+.sec.gold{background:var(--b3)}
+.head{display:grid;gap:14px;max-width:880px}
+
+
+.doors{display:grid;grid-template-columns:1fr 1fr}
+.door{position:relative;min-height:clamp(420px,52vw,680px);display:flex;align-items:flex-end;color:var(--white);text-decoration:none;overflow:hidden;background:var(--ink)}
+.door img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.door:hover img{transform:scale(1.03)}
+.door::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,18,14,0) 35%,rgba(23,18,14,.75) 100%)}
+.door .in{position:relative;z-index:1;display:grid;gap:14px;padding:clamp(24px,4vw,56px) max(var(--gut-r),4vw) clamp(24px,4vw,56px) max(var(--gut),4vw)}
+.door .in p{margin:0;max-width:36ch;color:rgba(255,255,255,.9)}
+@media (max-width:820px){.doors{grid-template-columns:1fr}}
+
+
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(20px,3vw,40px);margin:0;padding:0;list-style:none;counter-reset:s}
+.steps li{display:grid;gap:12px;align-content:start;border-top:2px solid currentColor;padding-top:18px;counter-increment:s}
+.steps li::before{content:counter(s);font:900 clamp(56px,6vw,88px)/.85 var(--display);letter-spacing:-.04em;color:var(--b3)}
+.sec.gold .steps li::before{color:var(--ink)}
+.steps h3{font:900 24px/1 var(--display);text-transform:uppercase;letter-spacing:-.02em;margin:0}
+.steps p{margin:0;max-width:34ch}
+
+
+.minigrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;max-width:520px}
+.minigrid .el{width:auto}
+.minigrid .el .sym{font-size:clamp(28px,4vw,42px)}
+.el.g-work{background:var(--paper)}.el.g-life{background:var(--b1)}
+
+
+.stages{list-style:none;margin:0;padding:0;display:grid}
+.stages li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) auto;gap:16px;align-items:center;border-top:1px solid var(--line);padding-block:20px}
+.stages li:last-child{border-bottom:1px solid var(--line)}
+.stages b{font:900 clamp(22px,2.4vw,32px)/1 var(--display);text-transform:uppercase;letter-spacing:-.02em}
+.status{border-radius:999px;padding:6px 12px;font:700 12px/1 var(--text);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;background:var(--paper);border:1.5px solid var(--ink)}
+.status.on{background:var(--ink);color:var(--crema)}
+.status.build{background:var(--b3);border-color:var(--b3)}
+@media (max-width:640px){.stages li{grid-template-columns:1fr auto}.stages li span.muted{grid-column:1/-1;order:3}}
+
+
+.ways{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.way{background:var(--paper);border-radius:18px;padding:26px;display:grid;gap:12px;align-content:start;min-width:0}
+.way h3{font:900 clamp(26px,2.6vw,34px)/.95 var(--display);text-transform:uppercase;letter-spacing:-.03em;margin:0}
+.way .who{font:700 12px var(--text);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.way p{margin:0}
+.way.later{background:transparent;border:2px dashed var(--line)}
+
+
+.form{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:820px}
+.form .full{grid-column:1/-1}
+.form label{display:grid;gap:6px;font-weight:600;font-size:14px}
+.form input,.form select,.form textarea{font:inherit;font-size:16px;padding:14px 16px;border-radius:12px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);width:100%}
+.form textarea{min-height:120px;resize:vertical}
+.form .msg{grid-column:1/-1;margin:0;font-weight:600}
+@media (max-width:640px){.form{grid-template-columns:1fr}}
+
+
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.fact{border:2px solid rgba(244,237,226,.25);border-radius:18px;padding:22px;display:grid;gap:8px}
+.fact b{font:900 clamp(30px,3.4vw,46px)/.9 var(--display);text-transform:uppercase;letter-spacing:-.03em;color:var(--b3)}
+.fact span{color:rgba(244,237,226,.85)}
+.example{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.example .can-wrap{width:clamp(160px,22vw,240px)}
+@media (max-width:640px){.example{grid-template-columns:1fr}}
+
+
+.quiz{min-height:70vh;padding-block:clamp(40px,6vw,80px)}
+.quiz .wrap{display:grid;gap:28px;max-width:980px}
+.progress{height:8px;border-radius:99px;background:var(--b1);overflow:hidden}
+.progress i{display:block;height:100%;background:var(--b3);transition:width .25s ease}
+.qmeta{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.back{background:none;border:0;font:700 14px var(--text);color:var(--ink);cursor:pointer;padding:8px 0;text-decoration:underline}
+.back[disabled]{opacity:.3;cursor:default;text-decoration:none}
+.answers{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.ans{text-align:left;background:var(--paper);border:2px solid var(--ink);border-radius:18px;padding:20px 22px;font:700 18px/1.3 var(--text);color:var(--ink);cursor:pointer;transition:background .15s ease,transform .15s ease;min-height:84px}
+.ans:hover{background:var(--b1);transform:translateY(-2px)}
+.ans[aria-pressed="true"]{background:var(--b3)}
+.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.mode{display:grid;gap:10px;text-align:left;background:var(--paper);border:2px solid var(--ink);border-radius:20px;padding:26px;cursor:pointer;color:var(--ink);font:inherit}
+.mode:hover{background:var(--b1)}
+.mode b{font:900 clamp(30px,3.4vw,44px)/.9 var(--display);text-transform:uppercase;letter-spacing:-.03em}
+.result{display:grid;gap:clamp(28px,4vw,48px)}
+.res-top{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.res-top .can-wrap{width:clamp(170px,24vw,260px)}
+@media (max-width:640px){.res-top{grid-template-columns:1fr}.res-top .can-wrap{justify-self:center}}
+.profile{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.pcard{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:center;background:var(--paper);border-radius:16px;padding:14px}
+.pcard .el{width:84px}
+.pcard .el .sym{font-size:32px}
+.pcard .el .nm{font-size:10.5px}
+.el .nm{overflow-wrap:anywhere;hyphens:auto}
+.pcard p{margin:0;font-size:15px}
+.ingr{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.box{background:var(--paper);border-radius:16px;padding:20px;display:grid;gap:8px;align-content:start}
+.box h3{margin:0;font:900 20px/1 var(--display);text-transform:uppercase;letter-spacing:-.02em}
+.box p{margin:0}
+.save{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.save input{font:inherit;font-size:16px;padding:14px 16px;border-radius:999px;border:2px solid var(--ink);background:var(--paper);min-width:0;flex:1 1 220px}
+
+
+.ptable{display:grid;gap:18px}
+.prow{display:grid;grid-template-columns:200px minmax(0,1fr);gap:18px;align-items:start;border-top:2px solid var(--ink);padding-top:16px}
+.prow .gname{display:grid;gap:4px}
+.prow .gname b{font:900 26px/1 var(--display);text-transform:uppercase;letter-spacing:-.02em}
+.prow .tiles{display:flex;flex-wrap:wrap;gap:10px}
+.prow .tiles .el{width:118px;cursor:pointer;font:inherit;color:var(--ink);text-align:left;transition:transform .15s ease}
+.prow .tiles .el:hover{transform:translateY(-3px)}
+.prow .tiles .el[aria-pressed="true"]{outline:4px solid var(--ink);outline-offset:3px}
+.el.soon{background:transparent;border-style:dashed;opacity:.6}
+@media (max-width:640px){.prow{grid-template-columns:1fr}.prow .tiles .el{width:calc(33.33% - 7px)}.prow .tiles .el .sym{font-size:34px}}
+.detail{position:sticky;bottom:max(16px,env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--crema);border-radius:20px;padding:22px 26px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:center;box-shadow:0 12px 40px rgba(23,18,14,.25)}
+.detail .sym{font:900 64px/.85 var(--display);letter-spacing:-.04em;color:var(--b3)}
+.detail h3{margin:0 0 4px;font:900 26px/1 var(--display);text-transform:uppercase}
+.detail p{margin:0;color:rgba(244,237,226,.85)}
+@media (max-width:640px){.detail{padding:14px 16px;gap:14px}.detail .sym{font-size:40px}.detail h3{font-size:19px}.detail p{font-size:14px;line-height:1.35}}
+
+
+.ztable{display:grid;gap:0}
+.zrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:20px;border-top:1px solid var(--line);padding-block:18px}
+.zrow:last-child{border-bottom:1px solid var(--line)}
+.zrow b{font:900 clamp(22px,2.4vw,30px)/1 var(--display);text-transform:uppercase;letter-spacing:-.02em}
+.zrow p{margin:0}
+@media (max-width:640px){.zrow{grid-template-columns:1fr;gap:6px}}
+.nutri{border-collapse:collapse;width:100%;max-width:560px;font-variant-numeric:tabular-nums}
+.nutri td{border-top:1px solid var(--line);padding:10px 0}
+.nutri td+td{text-align:right}
+
+
+.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.person{background:var(--paper);border-radius:20px;overflow:hidden;display:grid}
+.person img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.person .in{padding:22px;display:grid;gap:8px}
+.person h3{margin:0;font:900 30px/1 var(--display);text-transform:uppercase;letter-spacing:-.02em}
+
+
+.faq{display:grid;max-width:880px}
+.faq details{border-top:1px solid var(--line);padding-block:6px}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;padding-block:14px;font:800 clamp(19px,1.8vw,23px)/1.25 var(--display)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-weight:900;font-size:1.3em;line-height:.9}
+.faq details[open] summary::after{content:"−"}
+.faq details p{margin:0 0 16px;max-width:62ch}
+.ftr nav{display:flex;gap:18px;flex-wrap:wrap}
+.ftr nav a{color:rgba(244,237,226,.75);font-size:14px;text-decoration:none}
+
+
+.closer{background:var(--b3);padding-block:clamp(64px,9vw,120px)}
+.closer .wrap{display:grid;gap:24px;justify-items:start}
+
+
+.ftr{background:var(--ink);color:var(--crema);padding-block:56px}
+.ftr .wrap{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-end}
+.ftr .mark{font-size:28px}
+.ftr small{color:rgba(244,237,226,.6);font-size:13px}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header class="hdr">
+  <div class="peek" role="note"><div class="wrap"><b>Coming soon. Sneak Peek.</b><span>So wird es aussehen. Bestellen geht noch nicht.</span></div></div>
+  <div class="wrap">
+    <a class="mark brand" href="#start">unfair advantage</a>
+    <nav class="nav" id="nav" aria-label="Hauptnavigation">
+      <a href="#fuer-dich">Für dich</a>
+      <a href="#fuer-teams">Für Teams und Marken</a>
+      <a href="#periodensystem">Periodensystem</a>
+      <a href="#zutaten">Zutaten</a>
+      <a href="#ueber-uns">Über uns</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menü</button>
+    <a class="btn" href="#test">Test starten <span class="arr">↗</span></a>
+  </div>
+</header>
+
+<main>
+<section data-view="start" hidden>
+  <div class="hero">
+    <img src="img/tasse.jpg" alt="Tasse neben Tellern mit Gemüse und Saaten auf einem Holztisch">
+    <div class="wrap">
+      <p class="label">Dein Ritual. Ohne Kaffee.</p>
+      <h1 class="d-xl">Deine<br>Formel.</h1>
+      <p class="lead">Ein kurzer Test. Dein Alltag wird zu einer Formel. Die Formel kommt als Dose mit deinem Code.</p>
+      <div class="row">
+        <a class="btn light" href="#test">Test starten <span class="arr">↗</span></a>
+        <a class="textlink" href="#fuer-teams">Für Teams und Marken <span>↗</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="bands" aria-label="Momente">
+    <div class="band"><span>Morning.</span></div>
+    <div class="band"><span>Desk Day.</span></div>
+    <div class="band"><span>Full Day.</span></div>
+    <div class="band"><span>Evening.</span></div>
+  </div>
+
+  <div class="sec">
+    <div class="wrap">
+      <div class="head">
+        <p class="label">Unsere Idee</p>
+        <h2 class="d-l">Keiner trinkt das Gleiche.</h2>
+        <p class="lead">Dein Morgen sieht anders aus als meiner. Dein Nachmittag auch. Also mischen wir nicht für alle, sondern für dich. Geröstet, nach deinem Tag, mit deinem Code auf der Dose.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="doors">
+    <a class="door" href="#fuer-dich">
+      <img src="img/balkon.jpg" alt="Frau sitzt auf einem Holzbalkon in den Bergen">
+      <div class="in">
+        <p class="label">Für dich</p>
+        <h2 class="d-m">Deine Dose.<br>Dein Code.</h2>
+        <p>Test machen, Formel bekommen, alle 90 Tage neu gemischt.</p>
+        <span class="textlink">So geht's <span>↗</span></span>
+      </div>
+    </a>
+    <a class="door" href="#fuer-teams">
+      <img src="img/buffet.jpg" alt="Tisch mit Beeren, Nüssen und Gebäck in einem Raum mit Steinwand">
+      <div class="in">
+        <p class="label">Für Teams und Marken</p>
+        <h2 class="d-m">Eure Marke<br>als Mischung.</h2>
+        <p>Merch, das man trinkt. Für Kund:innen, Teams, Gäste und Events.</p>
+        <span class="textlink">Mehr erfahren <span>↗</span></span>
+      </div>
+    </a>
+  </div>
+
+  <div class="sec gold">
+    <div class="wrap">
+      <div class="head"><p class="label">So geht's</p><h2 class="d-l">Drei Schritte.</h2></div>
+      <ol class="steps">
+        <li><h3>Der Test.</h3><p>Zwölf Fragen zu deinem Alltag. Wie startet dein Tag, wann bewegst du dich, wo bist du um 15 Uhr.</p></li>
+        <li><h3>Die Formel.</h3><p>Jede Antwort zieht ein Element aus unserem Periodensystem. Daraus entsteht dein Code.</p></li>
+        <li><h3>Die Dose.</h3><p>Wir mischen auf Bestellung und füllen ab. Auf der Dose stehen dein Code, dein Moment und alle Zutaten.</p></li>
+      </ol>
+      <div><a class="btn" href="#test">Test starten <span class="arr">↗</span></a></div>
+    </div>
+  </div>
+
+  <div class="split">
+    <div class="copy">
+      <p class="label">Das Periodensystem</p>
+      <h2 class="d-l">Es geht<br>um dich.</h2>
+      <p class="body">Unsere Elemente beschreiben, wie du lebst. Ob du läufst oder Padel spielst, ob du am Schreibtisch sitzt oder Schicht arbeitest, wann du deine Tasse trinkst. Die Dose verspricht nichts. Sie passt zu deinem Tag.</p>
+      <div><a class="btn" href="#periodensystem">Alle Elemente <span class="arr">↗</span></a></div>
+    </div>
+    <div class="copy paper" style="background:var(--paper)">
+      <div class="minigrid" aria-label="Auszug aus dem Periodensystem">
+        <div class="el g-base"><span class="grp">Basis</span><span class="sym">Bs</span><span class="nm">Grundmischung</span></div>
+        <div class="el g-move"><span class="grp">Move</span><span class="sym">En</span><span class="nm">Endurance</span></div>
+        <div class="el g-move"><span class="grp">Move</span><span class="sym">Rc</span><span class="nm">Racket</span></div>
+        <div class="el g-move"><span class="grp">Move</span><span class="sym">Rd</span><span class="nm">Rest Day</span></div>
+        <div class="el g-work"><span class="grp">Work</span><span class="sym">Dk</span><span class="nm">Desk Day</span></div>
+        <div class="el g-work"><span class="grp">Work</span><span class="sym">Ct</span><span class="nm">Create</span></div>
+        <div class="el g-life"><span class="grp">Life</span><span class="sym">Fd</span><span class="nm">Full Day</span></div>
+        <div class="el g-clock"><span class="grp">Clock</span><span class="sym">Ev</span><span class="nm">Evening</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="split flip paper">
+    <div class="media"><img src="img/tasse.jpg" alt="Tasse neben Tellern mit Gemüse und Saaten auf einem Holztisch"></div>
+    <div class="copy">
+      <p class="label">Was drin ist</p>
+      <h2 class="d-l">Alles steht<br>drauf.</h2>
+      <p class="body">Die Basis ist geröstet: Carob, Zichorie und Lupine. Dazu kommen bis zu drei Akzente wie Kakao, Zimt, Kardamom oder Vanille. Auf jeder Dose stehen alle Zutaten und Allergene. Geheim bleibt nur das Mischverhältnis.</p>
+      <div><a class="textlink" href="#zutaten">Zutaten ansehen <span>↗</span></a></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="wrap">
+      <div class="head">
+        <p class="label">Hier probierst du es</p>
+        <h2 class="d-l">Erst trinken. Dann bestellen.</h2>
+        <p class="body muted">Hier wollen wir unsere Grundmischung ausschenken.</p>
+      </div>
+      <ul class="stages">
+        <li><b>The Base Club</b><span class="muted">Testküche nach dem Training</span><span class="status">geplant</span></li>
+        <li><b>Creator Circle</b><span class="muted">Testpanel für die Grundmischung</span><span class="status">geplant</span></li>
+        <li><b>The Plus Club</b><span class="muted">Schaufenster für Brands</span><span class="status build">im Aufbau</span></li>
+      </ul>
+      </div>
+  </div>
+
+  <div class="closer">
+    <div class="wrap">
+      <h2 class="d-l">Was ist<br>deine Formel?</h2>
+      <a class="btn" href="#test">Test starten <span class="arr">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<section data-view="fuer-dich" hidden>
+  <div class="hero">
+    <img src="img/balkon.jpg" alt="Frau sitzt auf einem Holzbalkon in den Bergen">
+    <div class="wrap">
+      <p class="label">Für dich</p>
+      <h1 class="d-xl">Deine Dose.<br>Dein Code.</h1>
+      <p class="lead">Du machst den Test. Wir mischen nach deinem Alltag und füllen ab.</p>
+      <div class="row"><a class="btn light" href="#test">Test starten <span class="arr">↗</span></a></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="wrap">
+      <div class="head"><p class="label">So wird aus dir eine Formel</p><h2 class="d-l">Vier Schritte.</h2></div>
+      <ol class="steps">
+        <li><h3>Test.</h3><p>Zwölf Fragen zu Morgen, Bewegung, Arbeit und Abend. Keine Fragen zu Gesundheit.</p></li>
+        <li><h3>Formel.</h3><p>Du siehst dein Profil mit deinen Elementen und deinen Code, zum Beispiel Bs · Fw · Ev.</p></li>
+        <li><h3>Dose.</h3><p>Wir mischen auf Bestellung, 250 g pro Dose. Dein Code, dein Moment und alle Zutaten stehen drauf.</p></li>
+        <li><h3>Alle 90 Tage.</h3><p>Mit jeder Lieferung ein kurzer Re-Test. Ändert sich dein Alltag, ändert sich deine Formel.</p></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="sec paper">
+    <div class="wrap">
+      <div class="example">
+        <div class="can-wrap" id="canDich"></div>
+        <div class="head">
+          <p class="label">Beispiel</p>
+          <h2 class="d-m">Bs · Fw · Ev.<br>Evening Flow.</h2>
+          <p class="body">Du machst Yoga, arbeitest kreativ und trinkst deine Tasse nach 18 Uhr. Deine Formel: geröstete Grundmischung mit Kardamom, Zimt, Hafer und Vanille. Ohne Kaffee, ohne Kakao.</p>
+          <p class="body muted">Allergene: Lupine, Hafer (Gluten).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec dark">
+    <div class="wrap">
+      <div class="head"><p class="label">Das Abo</p><h2 class="d-l">Alle 90 Tage neu.</h2><p class="lead muted">Alle 90 Tage kommt neuer Nachschub. Wie viele Dosen, legst du fest. Vorher fragen wir kurz, ob sich dein Alltag geändert hat.</p></div>
+      <div class="facts">
+        <div class="fact"><b>90 Tage</b><span>Dann kommt deine nächste Lieferung.</span></div>
+        <div class="fact"><b>Re-Test</b><span>Kurz vor jeder Lieferung. Deine Formel bleibt aktuell.</span></div>
+        <div class="fact"><b>Jederzeit</b><span>Zur nächsten Lieferung kündbar. Per Klick.</span></div>
+        <div class="fact"><b>Preis</b><span>Kommt mit dem Shop. Pro Dose und je kg.</span></div>
+      </div>
+      <div><a class="btn light" href="#test">Test starten <span class="arr">↗</span></a></div>
+    </div>
+  </div>
+
+  <div class="split">
+    <div class="media"><img src="img/feuer.jpg" alt="Feuerschale im Innenhof am Abend"></div>
+    <div class="copy">
+      <p class="label">Zum Verschenken</p>
+      <h2 class="d-l">Schenk eine<br>Formel.</h2>
+      <p class="body">Die Geschenkformel fragt nur nach Geschmack und Moment. Du brauchst keine Daten über die Person, nur ein Gefühl dafür, wann sie ihre Tasse trinkt.</p>
+      <div><a class="btn" href="#test">Geschenkformel <span class="arr">↗</span></a></div>
+    </div>
+  </div>
+
+  <div class="split flip paper">
+    <div class="media"><img src="img/bach.jpg" alt="Klares Wasser über Kieselsteinen in einem Bach"></div>
+    <div class="copy">
+      <p class="label">Formula Holder</p>
+      <h2 class="d-l">Formeln aus<br>der Community.</h2>
+      <p class="body">Menschen aus unserer Community teilen ihre Formel als limitierte Edition. Mit ihrem Code und ihrer Geschichte. Jede Kooperation ist Werbung und steht als Werbung dabei.</p>
+      </div>
+  </div>
+</section>
+
+<section data-view="fuer-teams" hidden>
+  <div class="hero">
+    <img src="img/feuer.jpg" alt="Feuerschale im Innenhof am Abend">
+    <div class="wrap">
+      <p class="label">Für Teams und Marken</p>
+      <h1 class="d-xl">Eure<br>Formel.</h1>
+      <p class="lead">Eure Marke als Mischung. Mit eurem Code auf der Dose.</p>
+      <div class="row"><a class="btn light" href="#anfrage">Anfrage stellen <span class="arr">↗</span></a></div>
+    </div>
+  </div>
+
+  <div class="split paper">
+    <div class="media"><img src="img/buffet.jpg" alt="Tisch mit Beeren, Nüssen und Gebäck in einem Raum mit Steinwand"></div>
+    <div class="copy">
+      <p class="label">Signature Blend</p>
+      <h2 class="d-l">Merch, das<br>man trinkt.</h2>
+      <p class="body">Eure Marke bekommt ihre eigene Formel. Wir entwickeln sie mit euch im Formel-Workshop, aus euren Werten, euren Momenten, eurem Geschmack. Ihr bekommt Dosen mit eurem Code und eurem Look. Für Kund:innen, Gäste, Launches und Events.</p>
+      <div><a class="btn" href="#anfrage">Signature Blend anfragen <span class="arr">↗</span></a></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="wrap">
+      <div class="head"><p class="label">Vier weitere Wege</p><h2 class="d-l">Für jeden Ort.</h2></div>
+      <div class="ways">
+        <div class="way"><span class="who">Unternehmen</span><h3>Team Formula.</h3><p>Jede Person im Team macht den Test und bekommt ihre eigene Dose. Freiwillig. Die Antworten sieht nur sie selbst, nicht ihr Arbeitgeber.</p></div>
+        <div class="way"><span class="who">Cafés, Hotels, Studios</span><h3>House Formula.</h3><p>Eure Hausmischung auf der Karte und im Regal. Mit Allergeninfo für den Ausschank.</p></div>
+        <div class="way"><span class="who">Events, Retreats</span><h3>Formula Bar.</h3><p>Vor Ort testen, mischen, mitnehmen. Jede Session bekommt ihre eigene Charge.</p></div>
+        <div class="way later"><span class="who">Pflanzendrinks</span><h3>Co-Branding.</h3><p>Eine Barista-Edition mit eurem Pflanzendrink. Sprecht uns an.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec gold">
+    <div class="wrap">
+      <div class="head"><p class="label">Ablauf</p><h2 class="d-l">Von der Idee zur Dose.</h2></div>
+      <ol class="steps">
+        <li><h3>Briefing.</h3><p>Wofür, für wen, wie viele. Ein Call reicht.</p></li>
+        <li><h3>Workshop.</h3><p>Wir bauen eure Formel aus dem Periodensystem.</p></li>
+        <li><h3>Muster.</h3><p>Ihr probiert und gebt frei.</p></li>
+        <li><h3>Abfüllung.</h3><p>Dosen mit eurem Code und Look.</p></li>
+        <li><h3>Lieferung.</h3><p>An euch, an euer Team oder direkt zum Event.</p></li>
+      </ol>
+      <p class="body">Mindestmenge und Preis auf Anfrage. Vorkasse, feste Menge.</p>
+    </div>
+  </div>
+
+  <div class="sec paper" id="anfrage">
+    <div class="wrap">
+      <div class="head"><p class="label">Anfrage</p><h2 class="d-l">Erzählt uns von euch.</h2><p class="body muted">Wir melden uns mit einem Vorschlag für eure Formel.</p></div>
+      <form class="form" id="b2bForm" novalidate>
+        <label>Name<input id="f-name" name="name" autocomplete="name" placeholder="Vor- und Nachname"></label>
+        <label>Firma<input id="f-firma" name="firma" autocomplete="organization" placeholder="Marke oder Unternehmen"></label>
+        <label>E-Mail<input id="f-mail" name="mail" type="email" autocomplete="email" placeholder="name@firma.de"></label>
+        <label>Weg<select id="f-weg" name="weg"><option>Signature Blend</option><option>Team Formula</option><option>House Formula</option><option>Formula Bar</option><option>Noch offen</option></select></label>
+        <label class="full">Wofür und ungefähr wie viele Dosen?<textarea id="f-text" name="text" placeholder="Zum Beispiel: Launch-Event im März, rund 200 Gäste"></textarea></label>
+        <div class="full"><button class="btn" type="submit">Anfrage senden <span class="arr">↗</span></button></div>
+        <p class="msg" id="b2bMsg" hidden>Danke. Anfragen nehmen wir ab dem Start an. Noch wird nichts verschickt.</p>
+      </form>
+    </div>
+  </div>
+</section>
+<section data-view="test" hidden>
+  <div class="quiz"><div class="wrap" id="quiz" aria-live="polite"></div></div>
+</section>
+<section data-view="periodensystem" hidden>
+  <div class="sec">
+    <div class="wrap">
+      <div class="head">
+        <p class="label">Das Periodensystem</p>
+        <h1 class="d-l">Es geht<br>um dich.</h1>
+        <p class="lead">Jedes Element beschreibt, wie du lebst. Aus deinen Antworten im Test entstehen drei bis vier Elemente. Das ist dein Code.</p>
+        </div>
+      <div class="ptable" id="ptable"></div>
+      <div class="detail" id="pdetail" aria-live="polite">
+        <span class="sym" id="pd-sym">Bs</span>
+        <div><h3 id="pd-name">Grundmischung</h3><p id="pd-text">Immer drin. Geröstet aus Carob, Zichorie und Lupine.</p></div>
+      </div>
+      <p class="body muted">Element-Namen stehen nur in deinem Profil. Auf der Dose stehen dein Code, dein Moment, alle Zutaten, Allergene und Nährwerte.</p>
+      <div><a class="btn" href="#test">Meine Elemente finden <span class="arr">↗</span></a></div>
+    </div>
+  </div>
+</section>
+
+<section data-view="zutaten" hidden>
+  <div class="split paper">
+    <div class="media"><img src="img/teller.jpg" alt="Teller mit Radieschen und Saaten auf einem Holztisch"></div>
+    <div class="copy">
+      <p class="label">Zutaten</p>
+      <h1 class="d-l">Alles steht<br>drauf.</h1>
+      <p class="body">Auf jeder Dose stehen alle Zutaten, alle Allergene und die Nährwerte. Geheim bleibt nur das Mischverhältnis, also wie viel wovon drin ist.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="wrap">
+      <div class="head"><p class="label">Die Basis</p><h2 class="d-m">Geröstet. Immer drin.</h2></div>
+      <div class="ztable">
+        <div class="zrow"><b>Carob</b><p>Die Schote des Johannisbrotbaums, geröstet und gemahlen.</p></div>
+        <div class="zrow"><b>Zichorie</b><p>Die geröstete Wurzel der Wegwarte.</p></div>
+        <div class="zrow"><b>Lupine</b><p>Eine Hülsenfrucht, geröstet. Lupine ist ein Allergen und steht deshalb auf jeder Dose.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec paper">
+    <div class="wrap">
+      <div class="head"><p class="label">Die Akzente</p><h2 class="d-m">Bis zu drei pro Formel.</h2><p class="body muted">Die Akzente sind Geschmack. Welche in deine Dose kommen, ergibt dein Test.</p></div>
+      <div class="ztable">
+        <div class="zrow"><b>Kakao</b><p>Schokoladig und rund. Enthält von Natur aus etwas Koffein. Abends lassen wir ihn weg.</p></div>
+        <div class="zrow"><b>Zimt</b><p>Warm und würzig.</p></div>
+        <div class="zrow"><b>Kardamom</b><p>Frisch und würzig, wie im Chai.</p></div>
+        <div class="zrow"><b>Vanille</b><p>Weich und rund.</p></div>
+        <div class="zrow"><b>Orange</b><p>Fruchtig und frisch.</p></div>
+        <div class="zrow"><b>Meersalz</b><p>Eine Prise. Macht Kakao und Vanille runder.</p></div>
+        <div class="zrow"><b>Hafer</b><p>Mild und cremig. Enthält Gluten.</p></div>
+      </div>
+      </div>
+  </div>
+
+  <div class="sec">
+    <div class="wrap">
+      <div class="ways">
+        <div class="way"><span class="who">Allergene</span><h3>Lupine. Hafer.</h3><p>Lupine ist in jeder Formel. Hafer (Gluten) ist drin, wenn deine Formel Rest Day, Parent oder Evening enthält. Beides steht auf der Dose und im Shop vor dem Kauf.</p></div>
+        <div class="way"><span class="who">Ohne Kaffee</span><h3>Was das heißt.</h3><p>In keiner Formel ist Kaffee. Kakao enthält von Natur aus etwas Koffein. Formeln mit Kakao tragen deshalb den Hinweis „Enthält Kakao“.</p></div>
+        <div class="way"><span class="who">Nährwerte</span><h3>Je 100 g und je Tasse.</h3>
+          <p>Jede Formel hat ihre eigenen Werte. Du siehst sie vor dem Kauf.</p>
+          <table class="nutri"><tbody>
+            <tr><td>Energie</td><td>folgt</td></tr>
+            <tr><td>Fett</td><td>folgt</td></tr>
+            <tr><td>davon gesättigte Fettsäuren</td><td>folgt</td></tr>
+            <tr><td>Kohlenhydrate</td><td>folgt</td></tr>
+            <tr><td>davon Zucker</td><td>folgt</td></tr>
+            <tr><td>Eiweiß</td><td>folgt</td></tr>
+            <tr><td>Salz</td><td>folgt</td></tr>
+          </tbody></table>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  
+</section>
+
+<section data-view="ueber-uns" hidden>
+  <div class="sec">
+    <div class="wrap">
+      <div class="head">
+        <p class="label">Über uns</p>
+        <h1 class="d-l">Wir sind<br>zu zweit.</h1>
+        <p class="lead">Die Tasse am Morgen gehört dazu. Die Alternativen dazu schmecken oft nach Verzicht und sind für alle gleich. Wir wollten eine, die nach etwas schmeckt und zu deinem Tag passt.</p>
+      </div>
+      <div class="team">
+        <div class="person"><img src="img/sophie.jpg" alt="Porträt von Sophie Friedrich" style="object-position:50% 25%"><div class="in"><span class="label muted">Marke, Community, Growth</span><h3>Sophie Friedrich.</h3><p>Gründerin von grw+, The Plus Club, The Base Club und dem Creator Circle. Sie baut Marken, die man erlebt, und bringt die Formel auf die Bühnen.</p></div></div>
+        <div class="person"><div style="aspect-ratio:4/5;background:var(--b2);display:grid;place-items:center"><span style="font:900 clamp(64px,9vw,120px)/1 var(--display);letter-spacing:-.04em">+1</span></div><div class="in"><span class="label muted">Operations und Einkauf</span><h3>Mitgründer.</h3><p>Kümmert sich um Einkauf, Abfüllung und darum, dass jede Dose so ankommt, wie sie soll. Mehr über ihn bald hier.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec paper">
+    <div class="wrap">
+      <div class="head"><p class="label">Fragen</p><h2 class="d-l">Kurz gefragt.</h2></div>
+      <div class="faq">
+        <details><summary>Ist da Kaffee drin?</summary><p>Nein. Keine unserer Formeln enthält Kaffee.</p></details>
+        <details><summary>Ist da Koffein drin?</summary><p>Kaffee ist in keiner Formel. Kakao enthält von Natur aus etwas Koffein. Deshalb steht auf jeder Formel mit Kakao „Enthält Kakao“. Ob Kakao in deiner Formel ist, siehst du in der Zutatenliste.</p></details>
+        <details><summary>Was genau ist geheim?</summary><p>Nur das Mischverhältnis. Alle Zutaten, Allergene und Nährwerte stehen auf der Dose und im Shop.</p></details>
+        <details><summary>Kann sich meine Formel ändern?</summary><p>Ja. Vor jeder Lieferung machst du einen kurzen Re-Test. Hat sich dein Alltag geändert, mischen wir neu.</p></details>
+        <details><summary>Wie kündige ich das Abo?</summary><p>Per Klick, jederzeit zur nächsten Lieferung. Der Button kommt mit dem Shop.</p></details>
+        <details><summary>Wann kann ich bestellen?</summary><p>Die Bestellung startet, sobald alles geprüft und freigegeben ist.</p></details>
+        <details><summary>Was passiert mit meinen Antworten?</summary><p>Der Test fragt nicht nach Gesundheit und läuft nur in deinem Browser. Gespeichert wird nichts.</p></details>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="rechtliches">
+    <div class="wrap">
+      <div class="head"><p class="label">Rechtliches</p><h2 class="d-m">Impressum.</h2>
+        <p class="body">Diese Seite betreibt die grw+ GmbH, Nithartstr. 1, 81543 München. Vertreten durch Sophie Friedrich, Geschäftsführerin. E-Mail: <a href="mailto:sophie@grwplus.com">sophie@grwplus.com</a>. Amtsgericht München, HRB 285185. USt-IdNr. DE455354149. Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV: Sophie Friedrich, Anschrift wie oben. Fotos: grw+. Unfair Advantage ist ein Arbeitstitel.</p></div>
+      <div class="head" id="datenschutz" style="margin-top:40px"><h2 class="d-m">Datenschutz.</h2>
+        <p class="body">Verantwortlich ist die grw+ GmbH, Kontakt wie oben.</p>
+        <p class="body">Hosting. Die Seite liegt bei GitHub Pages, betrieben von GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Beim Aufruf verarbeitet GitHub technisch nötige Daten wie deine IP-Adresse, um die Seite auszuliefern und abzusichern (Art. 6 Abs. 1 lit. f DSGVO). GitHub speichert die IP-Adresse zu Sicherheitszwecken. Wie lange, regelt die Datenschutzerklärung von GitHub. Die Übermittlung in die USA stützt sich auf die Standardvertragsklauseln der EU-Kommission (Art. 46 Abs. 2 lit. c DSGVO).</p>
+        <p class="body">E-Mail. Wenn du uns schreibst, verarbeiten wir deine Nachricht, um zu antworten (Art. 6 Abs. 1 lit. b und f DSGVO). Die Adresse leitet Namecheap Inc. (USA) an unser Postfach bei Google weiter. Wir löschen Mails, wenn sie erledigt sind und keine Aufbewahrungspflicht mehr besteht.</p>
+        <p class="body">Kein Tracking. Wir setzen keine Cookies und laden nichts von Dritten nach, auch keine Schriften. Der Test läuft nur in deinem Browser, deine Antworten verlassen dein Gerät nicht. Die Formulare sind noch nicht aktiv und senden nichts.</p>
+        <p class="body">Deine Rechte. Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung und Datenübertragbarkeit. Beschweren kannst du dich bei einer Aufsichtsbehörde, zum Beispiel beim Bayerischen Landesamt für Datenschutzaufsicht.</p>
+        <p class="body"><b>Widerspruch.</b> Verarbeitungen nach Art. 6 Abs. 1 lit. f DSGVO kannst du jederzeit widersprechen, wenn Gründe aus deiner besonderen Situation dafür sprechen (Art. 21 DSGVO). Eine Mail an die Adresse oben reicht. Stand: November 2026.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div style="display:grid;gap:10px">
+      <span class="mark brand">unfair advantage</span>
+      <small>Coming soon · Sneak Peek · Name ist Arbeitstitel · Stand November 2026</small>
+      <nav aria-label="Rechtliches"><a href="#rechtliches">Impressum</a><a href="#datenschutz">Datenschutz</a></nav>
+    </div>
+    <a class="btn light" href="#test">Test starten <span class="arr">↗</span></a>
+  </div>
+</footer>
+
+<script>
+
+const BRAND = 'unfair advantage';
+document.querySelectorAll('.brand').forEach(el => el.textContent = BRAND);
+
+
+function canSVG(codes, moment){
+  const w=200,h=300;
+  const code = codes.join(' · ');
+  return `<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="Dose mit Code ${code}" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="sh" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".18"/><stop offset=".22" stop-color="#fff" stop-opacity=".18"/><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".22"/></linearGradient>
+      <clipPath id="body"><path d="M20 30 Q100 50 180 30 L180 274 Q100 294 20 274 Z"/></clipPath>
+    </defs>
+    <ellipse cx="100" cy="276" rx="80" ry="12" fill="#17120E" opacity=".18"/>
+    <g clip-path="url(#body)">
+      <rect x="20" y="20" width="160" height="280" fill="#FFFCF6"/>
+      <rect x="20" y="196" width="160" height="22" fill="#F6E3C0"/>
+      <rect x="20" y="218" width="160" height="22" fill="#F2C98A"/>
+      <rect x="20" y="240" width="160" height="22" fill="#F2A33A"/>
+      <rect x="20" y="262" width="160" height="40" fill="#B8661C"/>
+      <text x="100" y="72" text-anchor="middle" font-family="Figtree, Arial" font-weight="800" font-size="13" fill="#17120E" letter-spacing="-.3">${BRAND}</text>
+      <text x="100" y="128" text-anchor="middle" font-family="Figtree, Arial" font-weight="900" font-size="26" fill="#17120E" letter-spacing="-1"${codes.length>3?' textLength="146" lengthAdjust="spacingAndGlyphs"':''}>${code}</text>
+      <text x="100" y="160" text-anchor="middle" font-family="Figtree, Arial" font-weight="800" font-size="13" fill="#17120E" letter-spacing=".8">${moment.toUpperCase()}</text>
+      <text x="100" y="178" text-anchor="middle" font-family="Figtree, Arial" font-weight="600" font-size="8.5" fill="#6B5E50">Geröstetes Getränkepulver</text>
+      <text x="100" y="189" text-anchor="middle" font-family="Figtree, Arial" font-weight="500" font-size="8.5" fill="#6B5E50">Ohne Kaffee · 250 g</text>
+      <rect x="20" y="20" width="160" height="280" fill="url(#sh)"/>
+    </g>
+    <path d="M20 30 Q100 50 180 30 L180 274 Q100 294 20 274 Z" fill="none" stroke="#17120E" stroke-opacity=".28" stroke-width="1.5"/>
+    <ellipse cx="100" cy="30" rx="80" ry="12" fill="#2A221B"/>
+    <ellipse cx="100" cy="28" rx="74" ry="9" fill="#3A3027"/>
+  </svg>`;
+}
+document.documentElement.lang='de';
+if(document.getElementById('canDemo'))document.getElementById('canDemo').innerHTML= canSVG(['Bs','En','Mr','Rd'],'Morning Rest Day');
+if(document.getElementById('canDich'))document.getElementById('canDich').innerHTML= canSVG(['Bs','Fw','Ev'],'Evening Flow');
+
+
+document.getElementById('b2bForm').addEventListener('submit',e=>{e.preventDefault();document.getElementById('b2bMsg').hidden=false});
+
+
+
+const EL={
+  Bs:{n:'Grundmischung',g:'base',s:'Immer drin. Geröstet aus Carob, Zichorie und Lupine.',a:[]},
+  En:{n:'Endurance',g:'move',s:'Du gehst gern lange Strecken.',a:['Kakao','Kardamom']},
+  St:{n:'Strength',g:'move',s:'Du trainierst mit Gewicht.',a:['Kakao','Zimt']},
+  Cv:{n:'Cardio',g:'move',s:'Du magst es, wenn der Puls hochgeht.',a:['Orange','Vanille'],new:1},
+  Fw:{n:'Flow',g:'move',s:'Du bewegst dich auf der Matte.',a:['Kardamom','Zimt']},
+  Rc:{n:'Racket',g:'move',s:'Du spielst mit Schläger.',a:['Kakao','Vanille']},
+  Rd:{n:'Rest Day',g:'move',s:'Bei dir gehören freie Tage zum Plan.',a:['Hafer','Zimt']},
+  Dk:{n:'Desk Day',g:'work',s:'Dein Tag findet am Schreibtisch statt.',a:['Kardamom','Kakao'],new:1},
+  Ct:{n:'Create',g:'work',s:'Du machst Dinge, die es vorher nicht gab.',a:['Orange','Zimt']},
+  Cc:{n:'Calls',g:'work',s:'Dein Tag besteht aus Gesprächen.',a:['Vanille','Meersalz'],new:1},
+  Fd:{n:'Full Day',g:'life',s:'Dein Kalender ist voll.',a:['Vanille','Kardamom']},
+  Tr:{n:'Travel',g:'life',s:'Du bist viel unterwegs.',a:['Zimt','Orange'],new:1},
+  Pe:{n:'Parent',g:'life',s:'Bei dir sitzen Kinder mit am Tisch.',a:['Vanille','Hafer'],new:1},
+  Sh:{n:'Shift',g:'life',s:'Du arbeitest, wenn andere frei haben.',a:['Kakao','Zimt'],new:1},
+  Mr:{n:'Morning',g:'clock',s:'Deine Tasse ist die erste des Tages.',a:[]},
+  Af:{n:'Afternoon',g:'clock',s:'Deine Tasse gehört zum Nachmittag.',a:[]},
+  Ev:{n:'Evening',g:'clock',s:'Deine Tasse trinkst du nach 18 Uhr.',a:['Hafer','Zimt','Vanille']}
+};
+const MOVE=['En','St','Cv','Fw','Rc','Rd'], WORKLIFE=['Dk','Ct','Cc','Fd','Tr','Pe','Sh'], CLOCK=['Mr','Af','Ev'];
+const MOMENT={Mr:'Die erste Tasse.',Af:'Die Tasse um 15 Uhr.',Ev:'Die Tasse nach 18 Uhr.'};
+
+
+const Q=[
+ {q:'Wann trinkst du deine Lieblingstasse?',gq:'Wann trinkt die Person ihre Lieblingstasse?',gift:1,o:[['Morgens, vor allem anderen',{Mr:3}],['Am Nachmittag, so gegen drei',{Af:3}],['Am Abend, wenn es ruhig wird',{Ev:3}],['Mehrmals am Tag',{Mr:1,Af:2}]]},
+ {q:'Wie startet dein Tag?',o:[['Mit Bewegung',{En:1,Cv:1,Mr:1}],['Mit Laptop und Liste',{Dk:2,Mr:1}],['Mit Kindern und Brotdosen',{Pe:3}],['Unterwegs, irgendwo zwischen zwei Orten',{Tr:3}]]},
+ {q:'Wie bewegst du dich am liebsten?',o:[['Laufen, Radfahren, lange Strecken',{En:3}],['Gewichte und Kraft',{St:3}],['Padel, Tennis, alles mit Schläger',{Rc:3}],['Yoga, Pilates, Mobility',{Fw:3}],['Spinning, HIIT, Puls hoch',{Cv:3}]]},
+ {q:'An wie vielen Tagen pro Woche bewegst du dich?',o:[['An einem oder keinem',{Rd:6}],['An zwei oder drei',{Rd:1}],['An vier oder fünf',{En:1,St:1,Cv:1,Fw:1,Rc:1}],['Jeden Tag',{En:1,St:1,Cv:1,Fw:1,Rc:1}]]},
+ {q:'Wann bewegst du dich meistens?',o:[['Vor der Arbeit',{Mr:1}],['In der Mittagspause',{Af:1}],['Nach Feierabend',{Ev:1}],['Wann es eben reinpasst',{Fd:1}]]},
+ {q:'Wo arbeitest du meistens?',o:[['Am Schreibtisch',{Dk:3}],['In Calls und Meetings',{Cc:3}],['Im Atelier, in der Werkstatt, im Studio',{Ct:3}],['Im Schichtdienst',{Sh:3}],['Unterwegs',{Tr:2}]]},
+ {q:'Wo bist du um 15 Uhr?',o:[['Im nächsten Call',{Cc:2,Af:1}],['Tief in einer Aufgabe',{Dk:2,Af:1}],['Auf dem Spielplatz',{Pe:2}],['Am Gate oder im Zug',{Tr:2}],['Kommt auf die Schicht an',{Sh:2}]]},
+ {q:'Wie sieht dein Kalender aus?',o:[['Kein Platz mehr',{Fd:3}],['Gut gefüllt, mit etwas Luft',{Dk:1,Cc:1}],['Jede Woche anders',{Tr:1,Ct:1}],['Eher leer, und das ist gut so',{Rd:1}]]},
+ {q:'Wo trinkst du deine Tasse am liebsten?',o:[['Am Schreibtisch',{Dk:1}],['Zwischen zwei Terminen',{Fd:1}],['Am Familientisch',{Pe:3}],['Im Zug oder am Gate',{Tr:2}]]},
+ {q:'Wann soll dein Tag aufhören?',o:[['Um 18 Uhr, Laptop zu',{Ev:2}],['Wenn alles erledigt ist',{Fd:2}],['Spät, ich bin eine Nachteule',{Sh:1,Ev:1}],['Wenn die Kinder im Bett sind',{Pe:1,Ev:1}]]},
+ {q:'Welcher Geschmack holt dich ab?',gq:'Welcher Geschmack holt die Person ab?',gift:1,o:[['Schokoladig',{Rc:1,En:1}],['Würzig, mit Zimt und Kardamom',{Fw:1}],['Vanille und Karamell',{Fd:1}],['Frisch, mit Orange',{Ct:1}]]},
+ {q:'Wie trinkst du deine Tasse?',gq:'Wie trinkt die Person ihre Tasse?',gift:1,prep:1,o:[['Pur mit heißem Wasser',{}],['Mit Milch',{}],['Mit Haferdrink',{}],['Kalt auf Eis',{}]]}
+];
+
+const GIFT_TASTE=[{n:'Dark',a:['Kakao'],ev:{n:'Round',a:[]}},{n:'Warm',a:['Zimt','Kardamom']},{n:'Soft',a:['Vanille']},{n:'Bright',a:['Orange','Zimt']}];
+
+const state={mode:null,i:0,answers:[]};
+const quiz=document.getElementById('quiz');
+const qs=()=>state.mode==='gift'?Q.filter(x=>x.gift):Q;
+const pickTop=(keys,sc)=>keys.reduce((b,k)=>(sc[k]||0)>(sc[b]||0)?k:b,keys[0]);
+
+function renderIntro(){
+  quiz.innerHTML=`<div class="head"><p class="label">Der Test</p><h1 class="d-l">Was ist<br>deine Formel?</h1>
+  <p class="lead">Zwölf Fragen zu deinem Alltag. Keine Fragen zu Gesundheit. Am Ende siehst du deinen Code und deine Dose.</p></div>
+  <div class="modes">
+    <button class="mode" data-mode="me"><span class="label muted">12 Fragen</span><b>Für mich.</b><span>Dein Alltag wird zu deiner Formel.</span></button>
+    <button class="mode" data-mode="gift"><span class="label muted">3 Fragen</span><b>Als Geschenk.</b><span>Nur Geschmack und Moment. Keine Daten über die Person.</span></button>
+  </div>
+  <p>Der Test läuft nur in deinem Browser und speichert nichts.</p>`;
+  quiz.querySelectorAll('.mode').forEach(b=>b.onclick=()=>{state.mode=b.dataset.mode;state.i=0;state.answers=[];renderQ()});
+}
+function renderQ(){
+  const list=qs(), q=list[state.i], n=list.length;
+  quiz.innerHTML=`<div class="progress" aria-hidden="true"><i style="width:${(state.i/n)*100}%"></i></div>
+  <div class="qmeta"><span class="label">Frage ${state.i+1} von ${n}</span><button class="back" id="qBack">Zurück</button></div>
+  <h2 class="d-m">${state.mode==='gift'&&q.gq?q.gq:q.q}</h2>
+  <div class="answers">${q.o.map((o,j)=>`<button class="ans" data-j="${j}" aria-pressed="${state.answers[state.i]===j}">${o[0]}</button>`).join('')}</div>`;
+  quiz.querySelectorAll('.ans').forEach(b=>b.onclick=()=>{state.answers[state.i]=+b.dataset.j;if(state.i<n-1){state.i++;renderQ()}else renderResult()});
+  const back=document.getElementById('qBack');
+  back.onclick=()=>{if(state.i>0){state.i--;renderQ()}else renderIntro()};
+}
+function compute(){
+  const list=qs(), sc={};
+  list.forEach((q,k)=>{const a=state.answers[k];if(a==null)return;Object.entries(q.o[a][1]).forEach(([e,p])=>sc[e]=(sc[e]||0)+p)});
+  const clock=pickTop(CLOCK,sc);
+  let codes, acc, moment, taste=null;
+  if(state.mode==='gift'){
+    const t=list.findIndex(x=>x.o===Q[10].o);
+    taste=GIFT_TASTE[state.answers[t]];
+    if(clock==='Ev'&&taste.ev) taste=taste.ev;
+    codes=['Bs',clock];
+    acc=[...new Set([...taste.a,...EL[clock].a])];
+    moment=`${EL[clock].n} ${taste.n}`;
+  } else {
+    codes=['Bs',pickTop(MOVE,sc),pickTop(WORKLIFE,sc),clock];
+    acc=[...new Set(codes.flatMap(c=>EL[c].a))];
+    moment=`${EL[clock].n} ${EL[codes[2]].n}`;
+  }
+  
+  const noCocoa=clock==='Ev'&&acc.includes('Kakao');
+  if(clock==='Ev') acc=acc.filter(x=>x!=='Kakao');
+  const allergens=['Lupine'];
+  if(acc.includes('Hafer')) allergens.push('Hafer (Gluten)');
+  const prepQ=list.find(x=>x.prep), prep=prepQ.o[state.answers[list.indexOf(prepQ)]][0];
+  return {codes,clock,acc,noCocoa,moment,allergens,prep,taste,draft:codes.some(c=>EL[c].new)};
+}
+function elTile(c){return `<div class="el g-${EL[c].g}"><span class="grp">${EL[c].g==='base'?'Basis':EL[c].g[0].toUpperCase()+EL[c].g.slice(1)}</span><span class="sym">${c}</span><span class="nm">${EL[c].n}</span></div>`}
+function renderResult(){
+  const r=compute(), gift=state.mode==='gift';
+  const ingredients=['geröstetes Johannisbrot (Carob)','geröstete Zichorienwurzel','geröstete <b>Lupine</b>',...r.acc.map(a=>a==='Hafer'?'<b>Hafer</b>':a)];
+  quiz.innerHTML=`<div class="progress" aria-hidden="true"><i style="width:100%"></i></div>
+  <div class="result">
+    <div class="res-top">
+      <div class="can-wrap">${canSVG(r.codes,r.moment)}</div>
+      <div class="head">
+        <p class="label">${gift?'Die Geschenkformel':'Deine Formel'}</p>
+        <div class="code">${r.codes.map((c,i)=>`${i?'<span class="dot">·</span>':''}<span class="chip${c==='Bs'?' b':''}">${c}</span>`).join('')}</div>
+        <h1 class="d-m">${r.moment}.</h1>
+        <p class="lead">${MOMENT[r.clock]} ${gift?'Gemischt nach Geschmack und Moment.':'Gemischt nach deinem Alltag.'}</p>
+      </div>
+    </div>
+    <div class="head"><p class="label">${gift?'Die Elemente':'Dein Profil'}</p><p class="body muted">${gift?`Geschmack: ${r.taste.n}. Die Geschenkformel kennt nur Moment und Geschmack.`:'Die Elemente beschreiben dich, nicht die Dose.'} Element-Namen stehen nur in deinem Profil. Auf der Dose stehen dein Code, dein Moment, alle Zutaten, Allergene und Nährwerte.</p></div>
+    <div class="profile">${r.codes.map(c=>`<div class="pcard">${elTile(c)}<p>${c==='Bs'?EL.Bs.s:(gift?MOMENT[c]:EL[c].s)}</p></div>`).join('')}</div>
+    <div class="ingr">
+      <div class="box"><h3>Zutaten.</h3><p>${ingredients.join(', ')}.</p><p class="muted">Geheim bleibt nur das Mischverhältnis.</p></div>
+      <div class="box"><h3>Allergene.</h3><p>${r.allergens.join(', ')}.</p><p class="muted">${r.acc.includes('Kakao')?'Ohne Kaffee. Enthält Kakao.':'Ohne Kaffee.'}${r.noCocoa?' Abends mischen wir ohne Kakao.':''}</p></div>
+      <div class="box"><h3>Zubereitung.</h3><p>${r.prep}. 7,5 g auf eine Tasse.</p><p class="muted"></p></div>
+    </div>
+    ${r.draft?'':''}
+    <div class="sec gold" style="border-radius:20px;padding:clamp(24px,4vw,40px)">
+      <div style="display:grid;gap:16px">
+        <h2 class="d-m">${gift?'Formel verschenken.':'Formel merken.'}</h2>
+        <p class="body">${gift?'Wir schicken dir eine Karte mit dem Code, sobald es losgeht.':'Wir sagen dir Bescheid, sobald deine Dose bestellbar ist.'}</p>
+        <form class="save" id="saveForm" novalidate><label class="label" for="saveMail" style="flex-basis:100%">E-Mail</label><input id="saveMail" type="email" autocomplete="email" placeholder="name@mail.de"><button class="btn" type="submit">${gift?'Karte vormerken':'Auf die Liste'} <span class="arr">↗</span></button></form>
+        <p class="body" style="font-size:14px">Schreib mir, sobald meine Dose bestellbar ist. Vorher kommt eine Bestätigungsmail. Abmelden geht jederzeit. <a href="#rechtliches">Datenschutz</a>.</p>
+        <p id="saveMsg" hidden>Die Liste startet mit dem Shop. Noch wird nichts gespeichert.</p>
+      </div>
+    </div>
+    <div class="row" style="display:flex;gap:14px;flex-wrap:wrap">
+      <button class="btn ghost" id="again">Test neu starten <span class="arr">↻</span></button>
+      ${gift?'':'<button class="btn ghost" id="asGift">Als Geschenk <span class="arr">↗</span></button>'}
+    </div>
+  </div>`;
+  document.getElementById('saveForm').onsubmit=e=>{e.preventDefault();document.getElementById('saveMsg').hidden=false};
+  document.getElementById('again').onclick=renderIntro;
+  const g=document.getElementById('asGift'); if(g) g.onclick=()=>{state.mode='gift';state.i=0;state.answers=[];renderQ()};
+  window.scrollTo(0,0);
+}
+renderIntro();
+
+
+const GROUPS=[['base','Basis','Immer drin',['Bs']],['move','Move','Wie bewegst du dich?',MOVE],['work','Work','Wie arbeitest du?',['Dk','Ct','Cc']],['life','Life','Wie ist dein Alltag?',['Fd','Tr','Pe','Sh']],['clock','Clock','Wann trinkst du?',CLOCK]];
+const pt=document.getElementById('ptable');
+pt.innerHTML=GROUPS.map(([g,name,q,keys])=>`<div class="prow"><div class="gname"><b>${name}</b><span class="muted">${q}</span></div><div class="tiles">${keys.map(k=>`<button class="el g-${g}${EL[k].soon?' soon':''}" data-k="${k}" aria-pressed="${k==='Bs'}"><span class="grp">${name}</span><span class="sym">${k}</span><span class="nm">${EL[k].n}</span></button>`).join('')}</div></div>`).join('');
+pt.addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(!b)return;const k=b.dataset.k,x=EL[k];
+  pt.querySelectorAll('[data-k]').forEach(t=>t.setAttribute('aria-pressed',t===b));
+  document.getElementById('pd-sym').textContent=k;document.getElementById('pd-name').textContent=x.n;
+  document.getElementById('pd-text').textContent=x.s+(x.a.length?` In der Dose: ${x.a.join(', ')}.`:'');});
+
+
+const views=[...document.querySelectorAll('[data-view]')];
+function show(){
+  const id=(location.hash||'#start').slice(1);
+  let target=views.find(v=>v.dataset.view===id), anchor=null;
+  if(!target){anchor=document.getElementById(id);target=anchor?anchor.closest('[data-view]'):null}
+  target=target||views.find(v=>v.dataset.view==='start');
+  views.forEach(v=>v.hidden = v!==target);
+  document.querySelectorAll('.nav a').forEach(a=>{
+    if(a.getAttribute('href')==='#'+target.dataset.view) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
+  });
+  nav.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');
+  if(anchor) anchor.scrollIntoView(); else window.scrollTo(0,0);
+}
+const nav=document.getElementById('nav'),menuBtn=document.getElementById('menuBtn');
+menuBtn.addEventListener('click',()=>{const o=nav.classList.toggle('open');menuBtn.setAttribute('aria-expanded',o)});
+addEventListener('hashchange',show);show();
+</script>
